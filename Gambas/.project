@@ -1,0 +1,23 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.9.2
+Title=Coordinates
+Startup=FMain
+Version=0.0.6
+Component=gb.image
+Component=gb.gui
+Component=gb.form
+TabSize=2
+Language=en_US
+Maintainer=enorman1
+Address=enorman1@iemp005.univ-pau.fr
+License=General Public License
+PackageName=coordinates_gambas-0.0.3
+CreateEachDirectory=1
+Packager=1
+Systems=debian,fedora
+Menus=debian:"Applications/Graphics"
+Categories=debian:"Graphics"
+Groups=debian:"debug"
+Menus=fedora:"Development/Building"
+Categories=fedora:"Building;Development"
+Groups=fedora:"Applications/Engineering"
