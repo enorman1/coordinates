@@ -1,0 +1,99 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,1,20,44)
+  NoTabFocus = True
+  Text = ("Coordinates")
+  Icon = Picture["coordinates_128.png"]
+  Resizable = False
+  { CheckBox1 CheckBox
+    MoveScaled(10,4,8,3)
+    NoTabFocus = True
+    Text = ("figé")
+  }
+  { CheckBox2 CheckBox
+    MoveScaled(10,15,8,3)
+    NoTabFocus = True
+    Text = ("figé")
+  }
+  { CheckBox3 CheckBox
+    MoveScaled(10,30,8,3)
+    NoTabFocus = True
+    Text = ("figé")
+  }
+  { Label1 Label
+    MoveScaled(0,0,14,2)
+    Text = ("Coordonnées")
+  }
+  { Label2 Label
+    MoveScaled(0,2,14,2)
+    Text = ("cartésiennes")
+  }
+  { Label3 Label
+    MoveScaled(0,4,8,3)
+    Text = ("Origine")
+  }
+  { Label4 Label
+    MoveScaled(0,7,3,2)
+    Text = ("X")
+  }
+  { Label5 Label
+    MoveScaled(0,11,3,2)
+    Text = ("Y")
+  }
+  { Label6 Label
+    MoveScaled(0,15,8,3)
+    Text = ("Fin")
+  }
+  { Label7 Label
+    MoveScaled(0,22,3,2)
+    Text = ("Y")
+  }
+  { Label8 Label
+    MoveScaled(0,18,3,2)
+    Text = ("X")
+  }
+  { Separator1 Separator
+    MoveScaled(0,25,18,1)
+  }
+  { Label9 Label
+    MoveScaled(0,26,14,2)
+    Text = ("Coordonnées")
+  }
+  { Label10 Label
+    MoveScaled(0,28,14,2)
+    Text = ("polaires (en °)")
+  }
+  { Label11 Label
+    MoveScaled(0,30,7,3)
+    Text = ("Angle")
+  }
+  { Label12 Label
+    MoveScaled(0,37,10,3)
+    Text = ("Longueur")
+  }
+  { TextBox1 ValueBox
+    MoveScaled(3,7,16,3.4286)
+    Text = ("0")
+  }
+  { TextBox2 ValueBox
+    MoveScaled(3,11,16,3.4286)
+    Text = ("0")
+  }
+  { TextBox3 ValueBox
+    MoveScaled(3,18,16,3.4286)
+    Text = ("0")
+  }
+  { TextBox5 ValueBox
+    MoveScaled(3,33,16,3.4286)
+    Text = ("0")
+  }
+  { TextBox6 ValueBox
+    MoveScaled(3,40,16,3.4286)
+    Text = ("0")
+  }
+  { TextBox4 ValueBox
+    MoveScaled(3,22,16,3.4286)
+    Text = ("0")
+  }
+}
