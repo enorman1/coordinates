@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: coordinates.jar
+Created-By: Eric Normandin
+Main-Class: coordinates
+
