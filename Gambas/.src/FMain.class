@@ -1,0 +1,10 @@
+' Gambas class file
+
+
+Public Sub TextBox1_KeyPress()
+Dim myanswer As Integer
+  
+  
+  ' myanswer = Message.Info("Boite de message", "ok")
+  ' Print Key.Code, Key.Text
+End
