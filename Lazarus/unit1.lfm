@@ -1,0 +1,210 @@
+object Form1: TForm1
+  Left = 599
+  Height = 378
+  Top = 161
+  Width = 154
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Coordinates'
+  ClientHeight = 378
+  ClientWidth = 154
+  KeyPreview = True
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  LCLVersion = '1.6.4.0'
+  object Edit6: TEdit
+    Left = 27
+    Height = 28
+    Top = 336
+    Width = 117
+    NumbersOnly = True
+    OnExit = Edit6Exit
+    OnKeyPress = Edit6KeyPress
+    TabOrder = 5
+    Text = '0'
+  end
+  object Edit5: TEdit
+    Left = 27
+    Height = 28
+    Top = 280
+    Width = 117
+    NumbersOnly = True
+    OnExit = Edit5Exit
+    OnKeyPress = Edit5KeyPress
+    TabOrder = 4
+    Text = '0'
+  end
+  object Edit4: TEdit
+    Left = 27
+    Height = 28
+    Top = 176
+    Width = 117
+    NumbersOnly = True
+    OnExit = Edit4Exit
+    OnKeyPress = Edit4KeyPress
+    TabOrder = 3
+    Text = '0'
+  end
+  object Edit3: TEdit
+    Left = 27
+    Height = 28
+    Top = 144
+    Width = 117
+    NumbersOnly = True
+    OnExit = Edit3Exit
+    OnKeyPress = Edit3KeyPress
+    TabOrder = 2
+    Text = '0'
+  end
+  object Edit2: TEdit
+    Left = 27
+    Height = 28
+    Top = 88
+    Width = 117
+    NumbersOnly = True
+    OnExit = Edit2Exit
+    OnKeyPress = Edit2KeyPress
+    TabOrder = 1
+    Text = '0'
+  end
+  object Edit1: TEdit
+    Left = 27
+    Height = 28
+    Top = 56
+    Width = 117
+    NumbersOnly = True
+    OnExit = Edit1Exit
+    OnKeyPress = Edit1KeyPress
+    TabOrder = 0
+    Text = '0'
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 18
+    Top = 0
+    Width = 99
+    Caption = 'Coordonnées'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 11
+    Height = 18
+    Top = 16
+    Width = 96
+    Caption = 'cartésiennes'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Height = 18
+    Top = 56
+    Width = 10
+    Caption = 'X'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 8
+    Height = 18
+    Top = 88
+    Width = 9
+    Caption = 'Y'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 8
+    Height = 18
+    Top = 32
+    Width = 55
+    Caption = 'Origine'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 8
+    Height = 18
+    Top = 144
+    Width = 10
+    Caption = 'X'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 8
+    Height = 18
+    Top = 176
+    Width = 9
+    Caption = 'Y'
+    ParentColor = False
+  end
+  object Label8: TLabel
+    Left = 8
+    Height = 18
+    Top = 120
+    Width = 22
+    Caption = 'Fin'
+    ParentColor = False
+  end
+  object Label9: TLabel
+    Left = 8
+    Height = 18
+    Top = 216
+    Width = 99
+    Caption = 'Coordonnées'
+    ParentColor = False
+  end
+  object Label10: TLabel
+    Left = 11
+    Height = 18
+    Top = 232
+    Width = 108
+    Caption = 'polaires (en °)'
+    ParentColor = False
+  end
+  object Label13: TLabel
+    Left = 8
+    Height = 18
+    Top = 256
+    Width = 43
+    Caption = 'Angle'
+    ParentColor = False
+  end
+  object Label14: TLabel
+    Left = 8
+    Height = 18
+    Top = 312
+    Width = 72
+    Caption = 'Longueur'
+    ParentColor = False
+  end
+  object CheckBox3: TCheckBox
+    Left = 92
+    Height = 22
+    Top = 256
+    Width = 52
+    Caption = 'figé'
+    TabOrder = 8
+    TabStop = False
+  end
+  object CheckBox2: TCheckBox
+    Left = 92
+    Height = 22
+    Top = 120
+    Width = 52
+    Caption = 'figé'
+    TabOrder = 7
+    TabStop = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 92
+    Height = 22
+    Top = 32
+    Width = 52
+    Caption = 'figé'
+    TabOrder = 6
+    TabStop = False
+  end
+  object Shape1: TShape
+    Left = 0
+    Height = 4
+    Top = 208
+    Width = 152
+  end
+end
