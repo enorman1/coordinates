@@ -1,3 +1,4 @@
 #!/bin/bash
 
-java -jar coordinates.jar '/' '$HOME/Documents/'
+java -jar coordinates.jar
+
