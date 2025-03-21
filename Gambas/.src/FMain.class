@@ -1,10 +1,507 @@
 ' Gambas class file
 
-
 Public Sub TextBox1_KeyPress()
-Dim myanswer As Integer
+  If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
+    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+      If InStr("0123456789-eE.,", Key.Text) = 0 Then
+        Stop Event
+      Else
+        If Not TextNumeric(TextBox1, Key.Text) Then Stop Event
+      Endif
+    Endif
+  Else
+    If Key.Code = 65293 Then ' Key Enter but Key.Enter = 65421 ???
+      TextBox1.Next.SetFocus
+    Endif
+  Endif
+End
+
+Public Sub TextBox1_LostFocus()
+  UpdateCoord(TextBox1)
+End
+
+Public Sub TextBox2_KeyPress()
+  If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
+    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+      If InStr("0123456789-eE.,", Key.Text) = 0 Then
+        Stop Event
+      Else
+        If Not TextNumeric(TextBox2, Key.Text) Then Stop Event
+      Endif
+    Endif
+  Else
+    If Key.Code = 65293 Then ' Key Enter but Key.Enter = 65421 ???
+      TextBox2.Next.SetFocus
+    Endif
+  Endif
+End
+
+Public Sub TextBox2_LostFocus()
+  UpdateCoord(TextBox2)
+End
+
+Public Sub TextBox3_KeyPress()
+  If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
+    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+      If InStr("0123456789-eE.,", Key.Text) = 0 Then
+        Stop Event
+      Else
+        If Not TextNumeric(TextBox3, Key.Text) Then Stop Event
+      Endif
+    Endif
+  Else
+    If Key.Code = 65293 Then ' Key Enter but Key.Enter = 65421 ???
+      TextBox3.Next.SetFocus
+    Endif
+  Endif
+End
+
+Public Sub TextBox3_LostFocus()
+  UpdateCoord(TextBox3)
+End
+
+Public Sub TextBox4_KeyPress()
+  If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
+    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+      If InStr("0123456789-eE.,", Key.Text) = 0 Then
+        Stop Event
+      Else
+        If Not TextNumeric(TextBox4, Key.Text) Then Stop Event
+      Endif
+    Endif
+  Else
+    If Key.Code = 65293 Then ' Key Enter but Key.Enter = 65421 ???
+      TextBox4.Next.SetFocus
+    Endif
+  Endif
+End
+
+Public Sub TextBox4_LostFocus()
+  UpdateCoord(TextBox4)
+End
+
+Public Sub TextBox5_KeyPress()
+  If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
+    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+      If InStr("0123456789-eE.,", Key.Text) = 0 Then
+        Stop Event
+      Else
+        If Not TextNumeric(TextBox5, Key.Text) Then Stop Event
+      Endif
+    Endif
+  Else
+    If Key.Code = 65293 Then ' Key Enter but Key.Enter = 65421 ???
+      TextBox5.Next.SetFocus
+    Endif
+  Endif
+End
+
+Public Sub TextBox5_LostFocus()
+  UpdateCoord(TextBox5)
+End
+
+Public Sub TextBox6_KeyPress()
+  If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
+    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+      If InStr("0123456789-eE.,", Key.Text) = 0 Then
+        Stop Event
+      Else
+        If Not TextNumeric(TextBox6, Key.Text) Then Stop Event
+      Endif
+    Endif
+  Else
+    If Key.Code = 65293 Then ' Key Enter but Key.Enter = 65421 ???
+      TextBox6.Next.SetFocus
+    Endif
+  Endif
+End
+
+Public Sub TextBox6_LostFocus()
+  UpdateCoord(TextBox6)
+End
+
+Private Function TextNumeric(myTextBox As TextBox, KeyText As String) As Boolean
+  ' Var currentLocale As Locale
+  Dim decimal As String
   
+  ' currentLocale = currentLocale.Current
+  ' decimal = currentLocale.DecimalSeparator
+  decimal = "."
+  If KeyText = "," Then KeyText = "."
+  myTextBox.Text = Replace(myTextBox.Text, ",", ".", gb.Binary)
+  If KeyText = "E" Then KeyText = "e"
+  myTextBox.Text = Replace(myTextBox.Text, "E", "e", gb.Binary)
   
-  ' myanswer = Message.Info("Boite de message", "ok")
-  ' Print Key.Code, Key.Text
+  ' Make sure that only one ‘e’ exists in the editfield
+  If KeyText = "e" Then
+    'System.DebugLog (InStr(object.Text, KeyAscii).ToString)
+    If InStr(myTextBox.Text, KeyText) > 0 Then Return False
+    'System.DebugLog (me.SelectionStart.ToString)
+    If myTextBox.Pos = 0 Then
+      Return False
+    Else
+      'System.DebugLog (InStr(me.Text, key).ToString)
+      If Not IsNumber(Mid(myTextBox.Text, myTextBox.Pos, 1)) Then Return False
+    End If
+  End If
+  
+  ' Make sure that only one ‘.’ exists in the TextBox
+  If KeyText = decimal Then
+    'System.DebugLog (InStr(object.Text, KeyAscii).ToString)
+    If InStr(myTextBox.Text, KeyText) > 0 Then Return False
+    'System.DebugLog (me.SelectionStart.ToString)
+    If myTextBox.Pos = 0 Then
+      Return False
+    Else
+      'System.DebugLog (InStr(me.Text, key).ToString)
+      If Not IsNumber(Mid(myTextBox.Text, myTextBox.Pos, 1)) Then Return False
+      If Not (InStr(myTextBox.Text, "e") = 0) Then
+        If myTextBox.Pos > InStr(myTextBox.Text, "e") Then Return False
+      Endif
+    End If
+  End If
+  
+  ' Make sure that only one ‘-’ exists in the editfield and that it can only be at the left end
+  If KeyText = "-" Then
+    'if InStr(object.Text, KeyAscii)=1 then return true
+    'System.DebugLog (me.SelectionStart.ToString)
+    If myTextBox.Pos > 0 Then
+      'return true
+      'System.DebugLog (InStr(me.Text, key).ToString)
+      If myTextBox.Pos < Len(myTextBox.Text) Then
+        If Not IsNumber(Mid(myTextBox.Text, myTextBox.Pos + 1, 1)) Then Return False
+      Endif
+      If Not (Mid(myTextBox.Text, myTextBox.Pos, 1) = "e") Then Return False
+    Else
+      If Len(myTextBox.Text) > 0 Then
+        If Not IsNumber(Left(myTextBox.Text, 1)) Then Return False
+      Endif
+    End If
+  End If
+  
+  Return True
+End
+
+Private Function UpdateCoord(myTextBox As TextBox) 
+  
+  Dim X1, Y1, X2, Y2 As Float
+  Dim angle, uLength As Float
+  Dim myDouble As Float
+  
+  'Const Pi As Float = 3.14159265358979323846264338327950
+  
+  If InStr(myTextBox.Text, ",") > 0 Then
+    myTextBox.Text = Replace(myTextBox.Text, ",", ".", gb.IgnoreCase)
+  End If
+  
+  If IsNumber(myTextBox.Text) Then
+    myDouble = Val(myTextBox.text)
+    If myTextBox = TextBox5 Then 'angle
+      If myDouble >= 360 Then
+        'myDouble = myDouble Mod 360.0
+        myDouble = myDouble - (360 * Floor(myDouble / 360.0))
+      End If
+      If myDouble <= -360 Then
+        myDouble = myDouble + (360 * Floor(myDouble / -360.0))
+      End If
+      If myDouble > 180 Then
+        myDouble = 360 - myDouble
+      End If
+      If myDouble <= -180 Then
+        myDouble = 360 + myDouble
+      End If
+    End If
+    myTextBox.text = Str(myDouble)
+  Else
+    myTextBox.Text = "0"
+  End If
+  
+  X1 = Val(TextBox1.Text) 'Origin_x
+  Y1 = Val(TextBox2.Text) 'Origin_Y
+  X2 = Val(TextBox3.Text) 'End_X
+  Y2 = Val(TextBox4.Text) 'End_Y
+  angle = Val(TextBox5.Text) 'angle
+  uLength = Val(TextBox6.Text) 'length
+  
+  Select Case myTextBox
+  Case TextBox1
+    If CheckBox1.Value = True Then
+      If CheckBox2.Value = True Then
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    Else
+      If CheckBox2.Value = True Then
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    End If
+  Case TextBox2
+    If CheckBox1.Value = True Then
+      If CheckBox2.Value = True Then
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    Else
+      If CheckBox2.Value = True Then
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    End If
+  Case TextBox3
+    If CheckBox2.Value = True Then
+      If CheckBox1.Value = True Then
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    Else
+      If CheckBox1.Value = True Then
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    End If
+  Case TextBox4
+    If CheckBox2.Value = True Then
+      If CheckBox1.Value = True Then
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    Else
+      If CheckBox1.Value = True Then
+        If CheckBox3.Value = True Then
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      Else
+        If CheckBox3.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        End If
+      End If
+    End If
+  Case TextBox5
+    If CheckBox3.Value = True Then
+      If CheckBox1.Value = True Then
+        If CheckBox2.Value = True Then
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      Else
+        If CheckBox2.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      End If
+    Else
+      If CheckBox1.Value = True Then
+        If CheckBox2.Value = True Then
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      Else
+        If CheckBox2.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      End If
+    End If
+  Case TextBox6
+    If CheckBox3.Value = True Then
+      If CheckBox1.Value = True Then
+        If CheckBox2.Value = True Then
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      Else
+        If CheckBox2.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      End If
+    Else
+      If CheckBox1.Value = True Then
+        If CheckBox2.Value = True Then
+          uLength = Sqr((X2 - X1) ^ 2 + (Y2 - Y1) ^ 2)
+          angle = ATan2((Y2 - Y1), (X2 - X1)) * 180 / Pi  'returns degrees
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      Else
+        If CheckBox2.Value = True Then
+          X1 = X2 - (uLength * Cos(angle * Pi / 180))
+          Y1 = Y2 - (uLength * Sin(angle * Pi / 180))
+        Else
+          X2 = X1 + (uLength * Cos(angle * Pi / 180))
+          Y2 = Y1 + (uLength * Sin(angle * Pi / 180))
+        End If
+      End If
+    End If
+  Case Else
+    'MessageBox("nothing to do!")
+  End Select
+  
+  'TextBox1.Text = Left(Str(X1), 12) 'Origin_x
+  'TextBox2.Text = Left(Str(Y1), 12) 'Origin_Y
+  'TextBox3.Text = Left(Str(X2), 12) 'End_X
+  'TextBox4.Text = Left(Str(Y2), 12) 'End_Y
+  'TextBox5.Text = Left(Str(angle), 12) 'angle
+  'TextBox6.Text = Left(Str(uLength), 12) 'length
+  TextBox1.Text = CutNumStr(Str(X1)) 'Origin_x
+  TextBox2.Text = CutNumStr(Str(Y1)) 'Origin_Y
+  TextBox3.Text = CutNumStr(Str(X2)) 'End_X
+  TextBox4.Text = CutNumStr(Str(Y2)) 'End_Y
+  TextBox5.Text = CutNumStr(Str(angle)) 'angle
+  TextBox6.Text = CutNumStr(Str(uLength)) 'length
+  
+End
+
+Private Function CutNumStr(sStr As String) As String
+  
+  Dim tmp As String
+  Dim i As Integer
+  
+  sStr = Replace(sStr, "E", "e", gb.Binary)
+  
+  i = InStr(sStr, ".")
+  If i > 0 Then
+    tmp = Left(sStr, i)
+    sStr = Mid(sStr, i + 1)
+    i = InStr(sStr, "e", gb.IgnoreCase) ' Attention : gb.IgnoreCase semble ne pas fonctionner !
+    If i > 0 Then
+      If i > 4 Then
+        tmp = tmp & Left(sStr, 4)     ' 4 decimales
+        sStr = Mid(sStr, i)
+      Endif
+      tmp = tmp & sStr
+    Else
+      i = Len(tmp)
+      i = 11 - i                      ' 11 chiffres ou 2 decimales a minimum
+      If i < 2 Then i = 2
+      tmp = tmp & Left(sStr, i)
+    Endif
+  Else
+    tmp = sStr
+  Endif
+  
+  Return tmp
+End
+
+Public Sub Form_Close()
+  ' Message.Info("Exit!", "ok")
 End
