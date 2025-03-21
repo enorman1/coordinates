@@ -10,8 +10,9 @@ Path="coordinates.gambas"
 [OpenFile]
 File[1]=".src/FMain.form"
 Active=1
-File[2]=".src/FMain.class:0.10"
+File[2]=".src/FMain.class:52.5"
 Count=2
 
 [Watches]
 Count=0
+
