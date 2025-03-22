@@ -2,7 +2,8 @@
 
 Public Sub TextBox1_KeyPress()
   If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
-    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    'If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    If Not (Key.Control) Then ' Ctrl+C, Ctrl+V, Ctrl+X
       If InStr("0123456789-eE.,", Key.Text) = 0 Then
         Stop Event
       Else
@@ -22,7 +23,8 @@ End
 
 Public Sub TextBox2_KeyPress()
   If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
-    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    'If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    If Not (Key.Control) Then ' Ctrl+C, Ctrl+V, Ctrl+X
       If InStr("0123456789-eE.,", Key.Text) = 0 Then
         Stop Event
       Else
@@ -42,7 +44,8 @@ End
 
 Public Sub TextBox3_KeyPress()
   If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
-    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    'If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    If Not (Key.Control) Then ' Ctrl+C, Ctrl+V, Ctrl+X
       If InStr("0123456789-eE.,", Key.Text) = 0 Then
         Stop Event
       Else
@@ -62,7 +65,8 @@ End
 
 Public Sub TextBox4_KeyPress()
   If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
-    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    'If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    If Not (Key.Control) Then ' Ctrl+C, Ctrl+V, Ctrl+X
       If InStr("0123456789-eE.,", Key.Text) = 0 Then
         Stop Event
       Else
@@ -82,7 +86,8 @@ End
 
 Public Sub TextBox5_KeyPress()
   If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
-    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    'If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    If Not (Key.Control) Then ' Ctrl+C, Ctrl+V, Ctrl+X
       If InStr("0123456789-eE.,", Key.Text) = 0 Then
         Stop Event
       Else
@@ -102,7 +107,8 @@ End
 
 Public Sub TextBox6_KeyPress()
   If Key.Code < 65000 Then    ' all key.code > 65000 are specials key (Shift, Enter, Del, etc.)
-    If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    'If Not (Key.Code = 67 Or Key.Code = 86 Or Key.Code = 88) Then ' Ctrl+C, Ctrl+V, Ctrl+X
+    If Not (Key.Control) Then ' Ctrl+C, Ctrl+V, Ctrl+X
       If InStr("0123456789-eE.,", Key.Text) = 0 Then
         Stop Event
       Else
@@ -163,11 +169,7 @@ Private Function TextNumeric(myTextBox As TextBox, KeyText As String) As Boolean
   
   ' Make sure that only one ‘-’ exists in the editfield and that it can only be at the left end
   If KeyText = "-" Then
-    'if InStr(object.Text, KeyAscii)=1 then return true
-    'System.DebugLog (me.SelectionStart.ToString)
     If myTextBox.Pos > 0 Then
-      'return true
-      'System.DebugLog (InStr(me.Text, key).ToString)
       If myTextBox.Pos < Len(myTextBox.Text) Then
         If Not IsNumber(Mid(myTextBox.Text, myTextBox.Pos + 1, 1)) Then Return False
       Endif
@@ -178,6 +180,29 @@ Private Function TextNumeric(myTextBox As TextBox, KeyText As String) As Boolean
       Endif
     End If
   End If
+  
+  If IsNumber(KeyText) Then
+    If Not (InStr(myTextBox.Text, "e") = 0) Then
+      If myTextBox.Pos > (InStr(myTextBox.Text, "e") - 1) Then
+        If Mid(myTextBox.Text, myTextBox.Pos + 1, 1) = "-" Then Return False
+        If myTextBox.Pos < Len(myTextBox.Text) Then
+          If myTextBox.Pos < (Len(myTextBox.Text) - 1) Then
+            'Print "<Len-2 : " & Mid(myTextBox.Text, myTextBox.Pos + 1, 1) & " " & Mid(myTextBox.Text, myTextBox.Pos + 2, 1)
+            If IsNumber(Mid(myTextBox.Text, myTextBox.Pos + 1, 1)) And 
+            IsNumber(Mid(myTextBox.Text, myTextBox.Pos + 2, 1)) Then Return False
+          Else
+            'Print "<Len-1 : " & Mid(myTextBox.Text, myTextBox.Pos, 1) & " " & Mid(myTextBox.Text, myTextBox.Pos + 1, 1)
+            If IsNumber(Mid(myTextBox.Text, myTextBox.Pos, 1)) And 
+            IsNumber(Mid(myTextBox.Text, myTextBox.Pos + 1, 1)) Then Return False
+          Endif
+        Else
+          'Print ">=Len : " & Mid(myTextBox.Text, myTextBox.Pos, 1) & " " & Mid(myTextBox.Text, myTextBox.Pos - 1, 1)
+          If IsNumber(Mid(myTextBox.Text, myTextBox.Pos, 1)) And 
+          IsNumber(Mid(myTextBox.Text, myTextBox.Pos - 1, 1)) Then Return False
+        Endif
+      Endif
+    Endif
+  Endif
   
   Return True
 End
@@ -477,6 +502,7 @@ Private Function CutNumStr(sStr As String) As String
   Dim i As Integer
   
   sStr = Replace(sStr, "E", "e", gb.Binary)
+  sStr = Replace(sStr, ",", ".", gb.Binary)
   
   i = InStr(sStr, ".")
   If i > 0 Then
